@@ -1,0 +1,107 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/* Card */
+
+.card {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  height: 500px;
+  width: 35%;
+}
+
+.card--header {
+  background-color: darkgray;
+  display: flex;
+  padding: 0.5rem;
+  width: 100%;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+  margin-bottom: 3px;
+  box-shadow: 2px 2px rgb(0 0 0 / 33%);
+}
+.card--title {
+  width: 100%;
+  margin: 0;
+}
+.card--main {
+  overflow-y: scroll;
+  padding: 0.5rem;
+  background-color: #ccc;
+  display: flex;
+  flex-direction: column;
+  max-height: 450px;
+}
+
+.gif {
+  width: 100%;
+}
+
+.emoji--container {
+  display: flex;
+}
+
+.card--footer {
+  background-color: #ccc;
+  padding: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.Comments-form > * {
+  width: 100%;
+}
+
+.description--container,
+.comments--container {
+  background-color: darkgrey;
+  border-radius: 10px;
+}
+.description--text {
+  text-align: center;
+}
+
+.bottom {
+  /* padding-top: 1rem; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment {
+  list-style: none;
+  background-color: wheat;
+  border-radius: 10px;
+  padding: 1rem 0.2rem;
+  margin-bottom: 1rem;
+}
+.comment--date,
+.comment--body {
+  margin: 0;
+}
+.comment--date {
+  margin-bottom: 0.5rem;
+}
+
+ul {
+  padding: 0;
+}
+
+/* Form */
+
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #ccc;
+  justify-content: center;
+}
+
+.create-post {
+  display: flex;
+  flex-direction: column;
+}
