@@ -6,6 +6,8 @@ combtn.addEventListener("click", postComment);
 
 function postComment(e) {
   e.preventDefault();
+
   let input = comments.value;
+
   console.log(input);
 }
