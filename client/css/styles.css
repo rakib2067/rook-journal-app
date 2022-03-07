@@ -98,7 +98,9 @@ ul {
   align-items: flex-start;
   background-color: #ccc;
 }
-
+.form {
+  margin-left: 3rem;
+}
 .create-post {
   display: flex;
   flex-direction: column;
@@ -110,4 +112,8 @@ ul {
 
 .gif--gallery {
   margin-left: 1rem;
+}
+
+#post-gif {
+  margin-top: 1.5rem;
 }
