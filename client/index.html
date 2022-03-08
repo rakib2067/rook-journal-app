@@ -64,18 +64,12 @@
               </p>
             </div>
             <ul class="comments-container">
+              {{#each comments}}
               <li class="comment">
                 <h4 class="comment--date">11:13 03/07/2022</h4>
-                <h3 class="comment--body">Test Comment</h3>
+                <h3 class="comment--body">{{this}}</h3>
               </li>
-              <li class="comment">
-                <h4 class="comment--date">11:13 03/07/2022</h4>
-                <h3 class="comment--body">Test Comment</h3>
-              </li>
-              <li class="comment">
-                <h4 class="comment--date">11:13 03/07/2022</h4>
-                <h3 class="comment--body">Test Comment</h3>
-              </li>
+              {{/each}}
             </ul>
           </div>
           <!--Card footer-->

@@ -20,6 +20,12 @@ router.post("/create", (req, res) => {
   res.status(201).send(newData);
 });
 
+router.get("/comment/:id", (req, res) => {
+  let comments = loadComments();
+  let specific = comments.filter((comment) => comment.id == req.params.id);
+  res.status(200).send(specific);
+});
+
 router.post("/comment", (req, res) => {
   let comment = loadComments();
   const data = req.body;

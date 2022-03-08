@@ -11,13 +11,42 @@ function initLoad() {
     .then((data) => {
       try {
         let templateData = data;
-        let template = Handlebars.compile(
-          document.querySelector("#template--all").innerHTML
-        );
+        //
+        //
+        //
+        //
+        // Getting Comment
+        try {
+          for (let post of templateData) {
+            fetch(`http://localhost:4000/comment/${post.id}`)
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data);
+                if (data[0].comment) {
+                  post["comments"] = data[0].comment;
+                } else {
+                  post = { comments: { cmt1: "No Comments" }, ...post };
+                }
+              });
+          }
+        } catch (e) {
+          console.log("No Posts", e);
+        }
         console.log(templateData);
-        let filled = template(templateData);
-        document.querySelector(".cards--container").innerHTML = filled;
-        addCardHandler();
+
+        //
+        //
+        //
+        //
+        setTimeout(() => {
+          let template = Handlebars.compile(
+            document.querySelector("#template--all").innerHTML
+          );
+
+          let filled = template(templateData);
+          document.querySelector(".cards--container").innerHTML = filled;
+          addCardHandler();
+        }, 50);
       } catch (e) {
         alert(e);
       }
@@ -34,7 +63,7 @@ let selectedGif;
 getTrending();
 function getTrending() {
   fetch(
-    "https://api.giphy.com/v1/gifs/trending?api_key=8PiyixOfCPFFExgTLW5347Y8xbuMoYGk&limit=25&rating=g"
+    "https://api.giphy.com/v1/gifs/trending?api_key=8PiyixOfCPFFExgTLW5347Y8xbuMoYGk&limit=45&rating=g"
   )
     .then((res) => {
       return res.json();
