@@ -7,7 +7,8 @@ const cjf = path.resolve(__dirname, "../assets/comments.json");
 const fs = require("fs");
 
 router.get("/", (req, res) => {
-  res.send("Hello");
+  let posts = loadPosts();
+  res.send(posts);
 });
 
 router.post("/create", (req, res) => {
