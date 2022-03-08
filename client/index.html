@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-
+    <script defer src="js/Cards.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -64,26 +64,20 @@
               </p>
             </div>
             <ul class="comments-container">
+              {{#each comments}}
               <li class="comment">
                 <h4 class="comment--date">11:13 03/07/2022</h4>
-                <h3 class="comment--body">Test Comment</h3>
+                <h3 class="comment--body">{{this}}</h3>
               </li>
-              <li class="comment">
-                <h4 class="comment--date">11:13 03/07/2022</h4>
-                <h3 class="comment--body">Test Comment</h3>
-              </li>
-              <li class="comment">
-                <h4 class="comment--date">11:13 03/07/2022</h4>
-                <h3 class="comment--body">Test Comment</h3>
-              </li>
+              {{/each}}
             </ul>
           </div>
           <!--Card footer-->
           <div class="card--footer">
             <div class="emoji--container">
-              <button id="smile-btn">smile</button>
-              <button id="thumbs-up-btn">thumbs-up</button>
-              <button id="heart-btn">heart</button>
+              <button class="emoji" value="{{emo1}}" id="emo1">smile {{emo1}}</button>
+              <button class="emoji" value="{{emo2}}" id="emo2">thumbs-up {{emo2}}</button>
+              <button class="emoji" value="{{emo3}}" id="emo3">heart {{emo3}}</button>
             </div>
             <form class="Comments-form">
               <label for="comment-area"></label>
@@ -97,6 +91,6 @@
         {{/each}}
       </script>
     </section>
-    <script defer src="js/bundle.js"></script>
+    <script defer src="js/Main.js"></script>
   </body>
 </html>
