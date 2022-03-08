@@ -8,6 +8,9 @@ class Post {
     this.title = data.title;
     this.content = data.content;
     this.giphy = data.giphy;
+    this.emo1 = data.emo1 || 0;
+    this.emo2 = data.emo2 || 0;
+    this.emo3 = data.emo3 || 0;
   }
 
   static create(userObject) {
@@ -30,22 +33,13 @@ class Post {
 }
 
 class Comments {
-  constructor(id, comment, emo1, emo2, emo3) {
+  constructor(id, comment) {
     this.id = id;
-    this.comment = comment;
-    this.emo1 = emo1;
-    this.emo2 = emo2;
-    this.emo3 = emo3;
+    this.comment = { cmt1: comment };
   }
 
   static create(data) {
-    const newComment = new Comments(
-      data.id,
-      data.comment,
-      data.emo1,
-      data.emo2,
-      data.emo3
-    );
+    const newComment = new Comments(data.id, data.comment);
     return newComment;
   }
 }

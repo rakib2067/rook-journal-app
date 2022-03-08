@@ -124,6 +124,9 @@ function returnUserInput(e) {
     title: userTitle,
     content: userDescription,
     giphy: selectedGif.src,
+    emo1: 0,
+    emo2: 0,
+    emo3: 0,
   };
   fetch("http://localhost:4000/create", {
     method: "POST",
@@ -148,9 +151,36 @@ function addCardHandler() {
   let cards = document.querySelectorAll(".card");
 
   cards.forEach((card) => {
-    console.log(card);
+    //Comment form
     let form = card.children[2].lastElementChild;
     form.addEventListener("submit", commentHandler);
+
+    // Emoji Form
+    let emojiCont = card.lastElementChild.firstElementChild.children;
+
+    for (let emoji of emojiCont) {
+      let data = {
+        id: card.id,
+        emo: emoji.id,
+      };
+      emoji.addEventListener("click", () => {
+        //{id, emo1, emo2, emo3}
+        console.log("Emoji: ", emoji, emoji.textContent);
+        fetch("http://localhost:4000/emo", {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      });
+    }
   });
 }
 
@@ -159,16 +189,11 @@ function commentHandler(e) {
   console.log(e);
   let id = e.target.parentElement.parentElement.id;
   let emojiContainer = e.target.parentElement.firstElementChild;
-  let emo1 = emojiContainer.firstElementChild;
-  let emo2 = emo1.nextElementSibling;
-  let emo3 = emo2.nextElementSibling;
+
   let input = e.target[0].value;
   let data = {
     id,
     comment: input,
-    emo1,
-    emo2,
-    emo3,
   };
   console.log(JSON.stringify(data));
   fetch("http://localhost:4000/comment", {
