@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/styles.css" />
-    <script defer src="js/Cards.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
     <title>Document</title>
   </head>
@@ -44,64 +44,59 @@
 
     <!--Card Post-->
 
-    <section class="card hide">
-      <div class="card--header">
-        <h3 class="card--title">Test Title</h3>
-      </div>
-      <div class="card--main">
-        <div class="gif--container">
-          <img
-            class="gif"
-            src="https://media3.giphy.com/media/7frSUXgbGqQPKNnJRS/giphy.gif?cid=9cb59807hptbodnxj89gfqcmreibzic7llmqlq4hlqw6jiuz&amp;rid=giphy.gif&amp;ct=g"
-          />
-        </div>
-        <div class="description--container">
-          <p class="description--text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
-            atque sed, totam cumque ad, aliquam veritatis optio sunt eveniet
-            dolorem temporibus corrupti libero ex recusandae exercitationem
-            possimus alias! Pariatur unde molestias omnis quo enim maiores,
-            nobis cumque reiciendis veniam reprehenderit tenetur dolor eius
-            facilis neque temporibus totam culpa iste, obcaecati quibusdam
-            ipsam, labore voluptates commodi cupiditate quod? Nemo est saepe
-            aliquam, facere quae fugit culpa eaque neque tenetur placeat veniam
-            nesciunt ullam possimus suscipit iusto autem impedit, amet inventore
-            asperiores aliquid illum at molestiae molestias! Recusandae dolorum
-            repellat laboriosam aut quod quidem eveniet, ex vel vero doloribus
-            maxime, et unde.
-          </p>
-        </div>
-        <ul class="comments-container">
-          <li class="comment">
-            <h4 class="comment--date">11:13 03/07/2022</h4>
-            <h3 class="comment--body">Test Comment</h3>
-          </li>
-          <li class="comment">
-            <h4 class="comment--date">11:13 03/07/2022</h4>
-            <h3 class="comment--body">Test Comment</h3>
-          </li>
-          <li class="comment">
-            <h4 class="comment--date">11:13 03/07/2022</h4>
-            <h3 class="comment--body">Test Comment</h3>
-          </li>
-        </ul>
-      </div>
-      <!--Card footer-->
-      <div class="card--footer">
-        <div class="emoji--container">
-          <button id="smile-btn">smile</button>
-          <button id="thumbs-up-btn">thumbs-up</button>
-          <button id="heart-btn">heart</button>
-        </div>
-        <form class="Comments-form">
-          <label for="comment-area"></label>
-          <input type="text" id="comment-area" placeholder="comment" />
-        </form>
-        <div class="bottom">
-          <button type="submit" id="comment-btn">Comments</button>
-        </div>
-      </div>
+    <section class="cards--container">
+      <script id="template--all" type="text/x-handlebars-template">
+        {{#each .}}
+        <section class="card" id="{{id}}">
+          <div class="card--header">
+            <h3 class="card--title">{{title}}</h3>
+          </div>
+          <div class="card--main">
+            <div class="gif--container">
+              <img
+                class="gif"
+                src="{{giphy}}"
+              />
+            </div>
+            <div class="description--container">
+              <p class="description--text">
+                {{content}}
+              </p>
+            </div>
+            <ul class="comments-container">
+              <li class="comment">
+                <h4 class="comment--date">11:13 03/07/2022</h4>
+                <h3 class="comment--body">Test Comment</h3>
+              </li>
+              <li class="comment">
+                <h4 class="comment--date">11:13 03/07/2022</h4>
+                <h3 class="comment--body">Test Comment</h3>
+              </li>
+              <li class="comment">
+                <h4 class="comment--date">11:13 03/07/2022</h4>
+                <h3 class="comment--body">Test Comment</h3>
+              </li>
+            </ul>
+          </div>
+          <!--Card footer-->
+          <div class="card--footer">
+            <div class="emoji--container">
+              <button id="smile-btn">smile</button>
+              <button id="thumbs-up-btn">thumbs-up</button>
+              <button id="heart-btn">heart</button>
+            </div>
+            <form class="Comments-form">
+              <label for="comment-area"></label>
+              <input type="text" id="comment-area" placeholder="comment" />
+              <div class="bottom">
+                <button type="submit" id="comment-btn">Comments</button>
+              </div>
+            </form>
+          </div>
+        </section>
+        {{/each}}
+      </script>
     </section>
-    <script defer src="js/Main.js"></script>
+    <script defer src="js/bundle.js"></script>
   </body>
 </html>
