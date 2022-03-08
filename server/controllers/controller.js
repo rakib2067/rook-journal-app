@@ -18,6 +18,7 @@ router.post("/create", (req, res) => {
   console.log(newData);
   posts.push(newData);
   savePosts(posts);
+  res.status(201).send(newData);
 });
 
 router.post("/comment", (req, res) => {

@@ -91,12 +91,26 @@ function returnUserInput(e) {
   if (!selectedGif) {
     return alert("Must Select a valid GIF");
   }
-  console.log({
-    userTitle,
-    userDescription,
-    gifURL: selectedGif.src,
-  });
-  location.reload();
+  let data = {
+    title: userTitle,
+    content: userDescription,
+    giphy: selectedGif.src,
+  };
+  fetch("http://localhost:4000/create", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log("Error:", e);
+      alert("Error: ", e);
+    });
+  // location.reload();
 }
 
 // Looping thorugh all gifs to handle selection
