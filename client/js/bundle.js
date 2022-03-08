@@ -1,3 +1,27 @@
+(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+let main = require("./Main");
+
+if (main.loaded === true) {
+  let cardsList = document.querySelector("cards--container");
+
+  const commentForm = document.querySelector(".Comments-form");
+  const comments = document.getElementById("comment-area");
+  const combtn = document.getElementById("comment-btn");
+
+  cardsList.addEventListener();
+
+  commentForm.addEventListener("submit", postComment);
+
+  function postComment(e) {
+    e.preventDefault();
+
+    let input = comments.value;
+
+    console.log(input);
+  }
+}
+
+},{"./Main":2}],2:[function(require,module,exports){
 let title = document.querySelector(".post-title");
 let description = document.querySelector(".post-description");
 let gif = document.querySelector("#post-gif");
@@ -6,14 +30,22 @@ let gallery = document.querySelector(".gifs");
 let gif_search = document.querySelector("#gif-search");
 let gif_reset = document.querySelector("#gif-reset");
 let selectedGif;
+description.addEventListener("keyup", getUserDescription);
+title.addEventListener("keyup", getUserTitle);
+gif.addEventListener("keyup", getUserGif);
 
-window.onload = initLoad;
-
+window.addEventListener("load", initLoad);
 let loaded = false;
 function initLoad() {
   fetch("http://localhost:4000/")
     .then((res) => res.json())
     .then((data) => {
+      for (post of data) {
+        let id = data.id;
+        let title = data.title;
+        let gifs = data.giphy;
+        let content = data.content;
+      }
       try {
         let templateData = data;
         let template = Handlebars.compile(
@@ -49,6 +81,23 @@ function getTrending() {
     .catch((error) => {
       alert("Error: ", error);
     });
+}
+
+let userObject = [];
+
+function getUserTitle(e) {
+  userTitle = e.target.value;
+  return userObject.push(userTitle);
+}
+
+function getUserDescription(e) {
+  userDescription = e.target.value;
+  return userObject.push(userDescription);
+}
+
+function getUserGif(e) {
+  userGif = e.target.value;
+  return userObject.push(userGif);
 }
 
 gif_search.addEventListener("click", fetchGifs);
@@ -88,10 +137,6 @@ form.addEventListener("submit", returnUserInput);
 
 function returnUserInput(e) {
   e.preventDefault();
-  let userTitle = title.value;
-  let userDescription = description.value;
-  userObject.push(userTitle);
-  userObject.push(userDescription);
   if (!selectedGif) {
     return alert("Must Select a valid GIF");
   }
@@ -140,3 +185,5 @@ function addGifHandlers() {
 
 // module.exports = { userObject };
 module.exports = { loaded };
+
+},{}]},{},[1]);

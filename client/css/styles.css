@@ -117,3 +117,14 @@ ul {
 #post-gif {
   margin-top: 1.5rem;
 }
+
+.cards--container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.card {
+  width: 30%;
+  margin-bottom: 10rem;
+}
