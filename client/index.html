@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-
+    <script defer src="js/Cards.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -81,9 +81,9 @@
           <!--Card footer-->
           <div class="card--footer">
             <div class="emoji--container">
-              <button id="smile-btn">smile</button>
-              <button id="thumbs-up-btn">thumbs-up</button>
-              <button id="heart-btn">heart</button>
+              <button class="emoji" id="smile-btn">smile</button>
+              <button class="emoji" id="thumbs-up-btn">thumbs-up</button>
+              <button class="emoji" id="heart-btn">heart</button>
             </div>
             <form class="Comments-form">
               <label for="comment-area"></label>
@@ -97,6 +97,6 @@
         {{/each}}
       </script>
     </section>
-    <script defer src="js/bundle.js"></script>
+    <script defer src="js/Main.js"></script>
   </body>
 </html>

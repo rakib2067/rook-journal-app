@@ -13,20 +13,20 @@ router.get("/", (req, res) => {
 
 router.post("/create", (req, res) => {
   let posts = loadPosts();
-  console.log("Posts", posts);
   const data = req.body;
   const newData = model.Post.create(data);
-  console.log(newData);
   posts.push(newData);
   savePosts(posts);
   res.status(201).send(newData);
 });
 
 router.post("/comment", (req, res) => {
+  let comment = loadComments();
   const data = req.body;
   const newData = model.Comments.create(data);
-  var newComment = JSON.stringify(newData);
-  fs.writeFile(cjf, newComment);
+  comment.push(newData);
+  fs.writeFileSync(cjf, JSON.stringify(comment), "utf-8");
+  res.status(201).send(newData);
 });
 
 const savePosts = (posts) => {
@@ -36,6 +36,14 @@ const savePosts = (posts) => {
 function loadPosts() {
   try {
     const buffer = fs.readFileSync(pjf, "utf-8");
+    return JSON.parse(buffer);
+  } catch (e) {
+    return [];
+  }
+}
+function loadComments() {
+  try {
+    const buffer = fs.readFileSync(cjf, "utf-8");
     return JSON.parse(buffer);
   } catch (e) {
     return [];

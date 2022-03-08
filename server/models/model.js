@@ -38,8 +38,14 @@ class Comments {
     this.emo3 = emo3;
   }
 
-  static create() {
-    const newComment = new Comments(id, comment, emo1, emo2, emo3);
+  static create(data) {
+    const newComment = new Comments(
+      data.id,
+      data.comment,
+      data.emo1,
+      data.emo2,
+      data.emo3
+    );
     return newComment;
   }
 }
