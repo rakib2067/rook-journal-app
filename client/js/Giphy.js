@@ -80,3 +80,5 @@ function resetSearch() {
   getTrending();
   gif.value = "";
 }
+
+module.exports = { getTrending, fetchGifs, resetSearch };

@@ -41,7 +41,7 @@ function initLoad() {
           addCardHandler();
         }, 50);
       } catch (e) {
-        alert(e);
+        console.log(e);
       }
     });
 }
@@ -145,3 +145,11 @@ function commentHandler(e) {
       console.log(error);
     });
 }
+
+module.exports = {
+  initLoad,
+  addCardHandler,
+  emoteHandler,
+  commentHandler,
+  returnUserInput,
+};
