@@ -8,22 +8,30 @@ const fs = require("fs");
 
 router.get("/", (req, res) => {
   let posts = loadPosts();
-  res.send(posts);
+  res.status(200).send(posts);
 });
 
 router.post("/create", (req, res) => {
-  let posts = loadPosts();
-  const data = req.body;
-  const newData = model.Post.create(data);
-  posts.push(newData);
-  savePosts(posts);
-  res.status(201).send(newData);
+  try {
+    let posts = loadPosts();
+    const data = req.body;
+    const newData = model.Post.create(data);
+    posts.push(newData);
+    savePosts(posts);
+    res.status(201).send(newData);
+  } catch (e) {
+    res.status(404).send();
+  }
 });
 
 router.get("/comment/:id", (req, res) => {
   let comments = loadComments();
   let specific = comments.filter((comment) => comment.id == req.params.id);
-  res.status(200).send(specific);
+  if (specific.length === 0) {
+    res.status(404).send();
+  } else {
+    res.status(200).send(specific);
+  }
 });
 
 router.post("/comment", (req, res) => {
@@ -45,7 +53,7 @@ router.post("/comment", (req, res) => {
     Object.assign(query.comment, obj);
     comment[position] = query;
     fs.writeFileSync(cjf, JSON.stringify(comment), "utf-8");
-    res.status(204).send();
+    res.status(200).send(comment[position]);
   }
 });
 
@@ -78,7 +86,7 @@ router.post("/emo", (req, res) => {
   changed[data.emo] = parseInt(changed[data.emo] + 1);
   posts[data.id - 1] = changed;
   savePosts(posts);
-  res.status(204).send(changed);
+  res.status(200).send(changed);
 });
 
 module.exports = router;
