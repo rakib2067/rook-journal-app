@@ -2,14 +2,18 @@
   "name": "client",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "browserify ./js/Main.js > bundle.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "browserify": "^17.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
