@@ -45,6 +45,7 @@ router.post("/comment", (req, res) => {
     Object.assign(query.comment, obj);
     comment[position] = query;
     fs.writeFileSync(cjf, JSON.stringify(comment), "utf-8");
+    res.status(204).send();
   }
 });
 
