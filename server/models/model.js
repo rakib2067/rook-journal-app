@@ -1,6 +1,5 @@
 var fs = require("fs");
 const path = require("path");
-// const buffer = fs.readFileSync("../server/assets/posts.json");
 
 class Post {
   constructor(data) {
@@ -11,6 +10,7 @@ class Post {
     this.emo1 = data.emo1 || 0;
     this.emo2 = data.emo2 || 0;
     this.emo3 = data.emo3 || 0;
+    this.comment = [];
   }
 
   static create(userObject) {
@@ -18,11 +18,30 @@ class Post {
     const pjf = path.resolve(__dirname, "../assets/post.json");
     let buffer = fs.readFileSync(pjf);
     try {
+      // Checks for file is empty
       buffer = JSON.parse(buffer);
     } catch (e) {
-      const newPost = new Post({ id: 1, ...userObject });
+      // If Empty
+      // Create first entry
+      let title = userObject.title;
+      let content = userObject.content;
+      let giphy = userObject.giphy;
+      let emo1 = userObject.emo1;
+      let emo2 = userObject.emo2;
+      let emo3 = userObject.emo3;
+      const newPost = new Post({
+        id: 1,
+        title,
+        content,
+        giphy,
+        emo1,
+        emo2,
+        emo3,
+      });
+
       return newPost;
     }
+    // Create new Posts
     for (let obj of buffer) {
       count++;
     }
@@ -32,16 +51,4 @@ class Post {
   }
 }
 
-class Comments {
-  constructor(id, comment) {
-    this.id = id;
-    this.comment = [comment];
-  }
-  // [{"id":"2","comment":[{"cmt":{"time":"test time","input":"Testing"}}]}]
-  static create(data) {
-    const newComment = new Comments(data.id, data.comment);
-    return newComment;
-  }
-}
-
-module.exports = { Post, Comments };
+module.exports = { Post };

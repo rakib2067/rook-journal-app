@@ -6,44 +6,19 @@ let description = document.querySelector(".post-description");
 // Loading all the Cards from Backend
 window.onload = initLoad;
 function initLoad() {
-  fetch("https://futureproof-secrets.herokuapp.com/")
+  // Initial Load of page
+  fetch("https://futureproof-secrets.netlify.app/")
     .then((res) => res.json())
     .then((data) => {
       try {
         let templateData = data;
-        //
-        // Getting Comment
-        try {
-          for (let post of templateData) {
-            fetch(
-              `https://futureproof-secrets.herokuapp.com/comment/${post.id}`
-            )
-              .then((res) => res.json())
-              .then((data) => {
-                console.log(data);
-                let test;
-                test = data;
-                if (data[0].comment) {
-                  post["comments"] = data[0].comment;
-                } else {
-                  post = { comments: { cmt1: "No Comments" }, ...post };
-                }
-              })
-              .catch((e) => console.log(e));
-          }
-        } catch (e) {
-          console.log("No Posts", e);
-        }
-        //
-        setTimeout(() => {
-          let template = Handlebars.compile(
-            document.querySelector("#template--all").innerHTML
-          );
-
-          let filled = template(templateData);
-          document.querySelector(".cards--container").innerHTML = filled;
-          addCardHandler();
-        }, 50);
+        let template = Handlebars.compile(
+          document.querySelector("#template--all").innerHTML
+        );
+        // Filling up and compiling handlebars template to load posts and comments dynamially
+        let filled = template(templateData);
+        document.querySelector(".cards--container").innerHTML = filled;
+        addCardHandler();
       } catch (e) {
         console.log(e);
       }
@@ -60,7 +35,6 @@ function returnUserInput(e) {
   let userTitle = title.value;
   let userDescription = description.value;
 
-  console.log(Giphy);
   if (!Giphy.selectedGif || userTitle == "" || userDescription == "") {
     return alert("Must Select a valid GIF");
   }
@@ -71,8 +45,9 @@ function returnUserInput(e) {
     emo1: 0,
     emo2: 0,
     emo3: 0,
+    comment: [],
   };
-  fetch("https://futureproof-secrets.herokuapp.com/create", {
+  fetch("https://futureproof-secrets.netlify.app/create", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -112,7 +87,7 @@ function emoteHandler(e) {
     id: e.target.parentElement.parentElement.parentElement.id,
     emo: e.target.id,
   };
-  fetch("https://futureproof-secrets.herokuapp.com/emo", {
+  fetch("https://futureproof-secrets.netlify.app/emo", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -150,8 +125,7 @@ function commentHandler(e) {
     id,
     comment: { datetime, input },
   };
-  console.log(JSON.stringify(data));
-  fetch("https://futureproof-secrets.herokuapp.com/comment", {
+  fetch("https://futureproof-secrets.netlify.app/comment", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -167,7 +141,6 @@ function commentHandler(e) {
 }
 
 // Modal
-
 let plus = document.querySelector("#add-post");
 let bg = document.querySelector(".modal-bg");
 let close = document.querySelector("#close");
