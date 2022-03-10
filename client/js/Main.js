@@ -56,12 +56,14 @@ function returnUserInput(e) {
   })
     .then((res) => {
       console.log(res);
+      setTimeout(() => {
+        location.reload();
+      }, 200);
     })
     .catch((e) => {
       console.log("Error:", e);
       alert("Error: ", e);
     });
-  location.reload();
 }
 
 // Store comments
@@ -96,11 +98,13 @@ function emoteHandler(e) {
   })
     .then((res) => {
       console.log(res);
+      setTimeout(() => {
+        location.reload();
+      }, 200);
     })
     .catch((e) => {
       alert(e);
     });
-  location.reload();
 }
 
 function commentHandler(e) {
@@ -135,11 +139,13 @@ function commentHandler(e) {
   })
     .then((res) => {
       console.log(res);
+      setTimeout(() => {
+        location.reload();
+      }, 200);
     })
     .catch((error) => {
       console.log(error);
     });
-  location.reload();
 }
 
 // Modal
