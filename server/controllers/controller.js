@@ -37,6 +37,10 @@ router.get("/comment/:id", (req, res) => {
 router.post("/comment", (req, res) => {
   let comments = loadComments();
   const data = req.body;
+  if (data.comment == "") {
+    res.status(404).send();
+  }
+
   //create new storage of post comment
   let query = comments.find((post) => data.id == post.id);
   console.log(query);
