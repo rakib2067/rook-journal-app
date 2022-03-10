@@ -35,25 +35,26 @@ router.get("/comment/:id", (req, res) => {
 });
 
 router.post("/comment", (req, res) => {
-  let comment = loadComments();
+  let comments = loadComments();
   const data = req.body;
   //create new storage of post comment
-  let query = comment.find((post) => data.id == post.id);
+  let query = comments.find((post) => data.id == post.id);
   console.log(query);
   if (!query) {
+    console.log(data);
     const newData = model.Comments.create(data);
-    comment.push(newData);
-    fs.writeFileSync(cjf, JSON.stringify(comment), "utf-8");
+    comments.push(newData);
+    fs.writeFileSync(cjf, JSON.stringify(comments), "utf-8");
     res.status(201).send(newData);
   } else {
-    let l = Object.keys(query.comment).length;
-    let key = `cmt${(l + 1).toString()}`;
-    let obj = { [key]: data.comment };
-    let position = comment.findIndex((post) => data.id == post.id);
-    Object.assign(query.comment, obj);
-    comment[position] = query;
-    fs.writeFileSync(cjf, JSON.stringify(comment), "utf-8");
-    res.status(200).send(comment[position]);
+    let l = query.comment.length;
+    //let key = `cmt${(l + 1).toString()}`;
+    let obj = data.comment;
+    let position = comments.findIndex((post) => data.id == post.id);
+    query.comment.push(obj);
+    comments[position] = query;
+    fs.writeFileSync(cjf, JSON.stringify(comments), "utf-8");
+    res.status(200).send(comments[position]);
   }
 });
 

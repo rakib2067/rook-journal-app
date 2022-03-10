@@ -59,6 +59,7 @@ function addGifHandlers() {
         selected = true;
         selectedGif = gif;
         selectedGif.style.border = "3px solid red";
+        console.log("selected: ", selectedGif);
         exports.selectedGif = selectedGif;
       } else {
         selectedGif.style.border = "none";
@@ -81,4 +82,4 @@ function resetSearch() {
   gif.value = "";
 }
 
-module.exports = { getTrending, fetchGifs, resetSearch };
+// module.exports = { getTrending, fetchGifs, resetSearch };

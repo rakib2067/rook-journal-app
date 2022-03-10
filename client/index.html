@@ -13,37 +13,8 @@
   <body>
     <header>
       <h1 id="app-name">Futureproof Secrets</h1>
-      <h2 id="Add Post">+</h2>
+      <h2 id="add-post">+</h2>
     </header>
-
-    <!-- Create post -->
-    <section class="post">
-      <div class="form">
-        <h2>Post a Secret:</h2>
-        <form class="create-post" action="">
-          <label for="post-title">Title:</label>
-          <input required type="text" class="post-title" id="post-title" />
-          <label for="post-description">Description:</label>
-          <textarea
-            required
-            rows="5"
-            cols="40"
-            maxlength="200"
-            id="post-description"
-            class="post-description"
-          ></textarea>
-          <input type="submit" id="submit-btn" value="Create Post" />
-        </form>
-      </div>
-      <div class="gif--gallery">
-        <div class="form--control">
-          <input type="text" placeholder="Search for Gif" id="post-gif" />
-          <input id="gif-search" type="button" value="search" />
-          <input id="gif-reset" type="button" value="reset" />
-          <div class="gifs"></div>
-        </div>
-      </div>
-    </section>
 
     <!--Card Post-->
 
@@ -69,8 +40,8 @@
             <ul class="comments-container">
               {{#each comments}}
               <li class="comment">
-                <h4 class="comment--date">11:13 03/07/2022</h4>
-                <h3 class="comment--body">{{this}}</h3>
+                <h4 class="comment--date">{{this.datetime}}</h4>
+                <h3 class="comment--body">{{this.input}}</h3>
               </li>
               {{/each}}
             </ul>
@@ -103,5 +74,38 @@
         <li>Rakib</li>
       </ul>
     </footer>
+    <!-- Create post -->
+    <div class="modal-bg">
+      <section class="post">
+        <div class="form">
+          <h2>Post a Secret:</h2>
+          <form class="create-post" action="">
+            <label for="post-title">Title:</label>
+            <input required type="text" class="post-title" id="post-title" />
+            <label for="post-description">Description:</label>
+            <textarea
+              required
+              rows="5"
+              cols="40"
+              maxlength="200"
+              id="post-description"
+              class="post-description"
+            ></textarea>
+            <input type="submit" id="submit-btn" value="Create Post" />
+          </form>
+        </div>
+        <div class="gif--gallery">
+          <div class="input--control">
+            <div class="left">
+              <input type="text" placeholder="Search for Gif" id="post-gif" />
+              <input id="gif-search" type="button" value="search" />
+              <input id="gif-reset" type="button" value="reset" />
+            </div>
+            <h3 id="close">X</h3>
+          </div>
+          <div class="gifs"></div>
+        </div>
+      </section>
+    </div>
   </body>
 </html>

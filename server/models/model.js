@@ -35,9 +35,9 @@ class Post {
 class Comments {
   constructor(id, comment) {
     this.id = id;
-    this.comment = { cmt1: comment };
+    this.comment = [comment];
   }
-
+  // [{"id":"2","comment":[{"cmt":{"time":"test time","input":"Testing"}}]}]
   static create(data) {
     const newComment = new Comments(data.id, data.comment);
     return newComment;
