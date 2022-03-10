@@ -19,19 +19,19 @@ describe("Testing App Functionality", () => {
   });
   describe("Giphy API", () => {
     test("Fetch from API", () => {
-      app.getTrending();
+      app.test.getTrending();
       expect(fetch.mock.calls[0][0]).toMatch(
         /https:\/\/api.giphy.com\/v1\/gifs\/trending\?api_key=8PiyixOfCPFFExgTLW5347Y8xbuMoYGk&limit=45&rating=g/
       );
     });
     test("Fetch Specific from the API", () => {
-      app.fetchGifs();
+      app.test.fetchGifs();
       expect(fetch.mock.calls[0][0]).toMatch(
         /https:\/\/api.giphy.com\/v1\/gifs\/search\?api_key=8PiyixOfCPFFExgTLW5347Y8xbuMoYGk&q=&limit=25&offset=0&rating=g&lang=en/
       );
     });
     test("Reset Search", () => {
-      app.resetSearch();
+      app.test.resetSearch();
       expect(fetch.mock.calls[0][0]).toMatch(
         /https:\/\/api.giphy.com\/v1\/gifs\/trending\?api_key=8PiyixOfCPFFExgTLW5347Y8xbuMoYGk&limit=45&rating=g/
       );

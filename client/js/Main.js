@@ -26,7 +26,8 @@ function initLoad() {
                 } else {
                   post = { comments: { cmt1: "No Comments" }, ...post };
                 }
-              });
+              })
+              .catch((e) => console.log(e));
           }
         } catch (e) {
           console.log("No Posts", e);
@@ -56,8 +57,9 @@ function returnUserInput(e) {
   e.preventDefault();
   let userTitle = title.value;
   let userDescription = description.value;
+
   console.log(Giphy);
-  if (!Giphy.selectedGif) {
+  if (!Giphy.selectedGif || userTitle == "" || userDescription == "") {
     return alert("Must Select a valid GIF");
   }
   let data = {
@@ -103,6 +105,7 @@ function addCardHandler() {
 }
 
 function emoteHandler(e) {
+  e.preventDefault();
   let data = {
     id: e.target.parentElement.parentElement.parentElement.id,
     emo: e.target.id,
@@ -179,5 +182,6 @@ module.exports = {
   addCardHandler,
   emoteHandler,
   commentHandler,
+  closeModal,
   returnUserInput,
 };
