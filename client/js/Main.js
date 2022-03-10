@@ -7,7 +7,7 @@ let description = document.querySelector(".post-description");
 window.onload = initLoad;
 function initLoad() {
   // Initial Load of page
-  fetch("https://futureproof-secrets.netlify.app/")
+  fetch("https://futureproof-secrets.herokuapp.com/")
     .then((res) => res.json())
     .then((data) => {
       try {
@@ -47,7 +47,7 @@ function returnUserInput(e) {
     emo3: 0,
     comment: [],
   };
-  fetch("https://futureproof-secrets.netlify.app/create", {
+  fetch("https://futureproof-secrets.herokuapp.com/create", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -87,7 +87,7 @@ function emoteHandler(e) {
     id: e.target.parentElement.parentElement.parentElement.id,
     emo: e.target.id,
   };
-  fetch("https://futureproof-secrets.netlify.app/emo", {
+  fetch("https://futureproof-secrets.herokuapp.com/emo", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -125,7 +125,7 @@ function commentHandler(e) {
     id,
     comment: { datetime, input },
   };
-  fetch("https://futureproof-secrets.netlify.app/comment", {
+  fetch("https://futureproof-secrets.herokuapp.com/comment", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
