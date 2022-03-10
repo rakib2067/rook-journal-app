@@ -235,6 +235,9 @@ footer {
   background: #3c2157;
   padding: 1.5rem;
   color: rgb(255, 255, 255);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 footer > * {
   margin: 0;
