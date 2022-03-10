@@ -6,7 +6,7 @@ let description = document.querySelector(".post-description");
 // Loading all the Cards from Backend
 window.onload = initLoad;
 function initLoad() {
-  fetch("http://localhost:4000/")
+  fetch("https://futureproof-secrets.herokuapp.com/")
     .then((res) => res.json())
     .then((data) => {
       try {
@@ -15,7 +15,9 @@ function initLoad() {
         // Getting Comment
         try {
           for (let post of templateData) {
-            fetch(`http://localhost:4000/comment/${post.id}`)
+            fetch(
+              `https://futureproof-secrets.herokuapp.com/comment/${post.id}`
+            )
               .then((res) => res.json())
               .then((data) => {
                 console.log(data);
@@ -70,7 +72,7 @@ function returnUserInput(e) {
     emo2: 0,
     emo3: 0,
   };
-  fetch("http://localhost:4000/create", {
+  fetch("https://futureproof-secrets.herokuapp.com/create", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -110,7 +112,7 @@ function emoteHandler(e) {
     id: e.target.parentElement.parentElement.parentElement.id,
     emo: e.target.id,
   };
-  fetch("http://localhost:4000/emo", {
+  fetch("https://futureproof-secrets.herokuapp.com/emo", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -149,7 +151,7 @@ function commentHandler(e) {
     comment: { datetime, input },
   };
   console.log(JSON.stringify(data));
-  fetch("http://localhost:4000/comment", {
+  fetch("https://futureproof-secrets.herokuapp.com/comment", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
