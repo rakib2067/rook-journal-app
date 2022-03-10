@@ -5,7 +5,6 @@ let description = document.querySelector(".post-description");
 
 // Loading all the Cards from Backend
 window.onload = initLoad;
-
 function initLoad() {
   fetch("http://localhost:4000/")
     .then((res) => res.json())
@@ -19,7 +18,9 @@ function initLoad() {
             fetch(`http://localhost:4000/comment/${post.id}`)
               .then((res) => res.json())
               .then((data) => {
-                //console.log(data);
+                console.log(data);
+                let test;
+                test = data;
                 if (data[0].comment) {
                   post["comments"] = data[0].comment;
                 } else {
@@ -55,6 +56,7 @@ function returnUserInput(e) {
   e.preventDefault();
   let userTitle = title.value;
   let userDescription = description.value;
+  console.log(Giphy);
   if (!Giphy.selectedGif) {
     return alert("Must Select a valid GIF");
   }
@@ -124,11 +126,24 @@ function commentHandler(e) {
   e.preventDefault();
   console.log(e);
   let id = e.target.parentElement.parentElement.id;
+  var currentdate = new Date();
+  var datetime =
+    currentdate.getDate() +
+    "/" +
+    (currentdate.getMonth() + 1) +
+    "/" +
+    currentdate.getFullYear() +
+    " - " +
+    currentdate.getHours() +
+    ":" +
+    currentdate.getMinutes() +
+    ":" +
+    currentdate.getSeconds();
 
   let input = e.target[0].value;
   let data = {
     id,
-    comment: input,
+    comment: { datetime, input },
   };
   console.log(JSON.stringify(data));
   fetch("http://localhost:4000/comment", {
@@ -144,6 +159,19 @@ function commentHandler(e) {
     .catch((error) => {
       console.log(error);
     });
+}
+
+// Modal
+
+let plus = document.querySelector("#add-post");
+let bg = document.querySelector(".modal-bg");
+let close = document.querySelector("#close");
+plus.addEventListener("click", closeModal);
+
+close.addEventListener("click", closeModal);
+
+function closeModal() {
+  bg.classList.toggle("bg-active");
 }
 
 module.exports = {
