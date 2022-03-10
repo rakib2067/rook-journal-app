@@ -61,7 +61,7 @@ function returnUserInput(e) {
       console.log("Error:", e);
       alert("Error: ", e);
     });
-  // location.reload();
+  location.reload();
 }
 
 // Store comments
@@ -100,6 +100,7 @@ function emoteHandler(e) {
     .catch((e) => {
       alert(e);
     });
+  location.reload();
 }
 
 function commentHandler(e) {
@@ -138,6 +139,7 @@ function commentHandler(e) {
     .catch((error) => {
       console.log(error);
     });
+  location.reload();
 }
 
 // Modal
