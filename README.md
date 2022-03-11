@@ -23,6 +23,7 @@ open browser on the localhost:3000 or run from terminal `node Main.js`
 - jest
 - express
 - cors
+- handlebars
 
 # process
 
