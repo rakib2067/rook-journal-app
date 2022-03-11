@@ -90,7 +90,13 @@
           <h2>Post a Secret:</h2>
           <form class="create-post" action="">
             <label for="post-title">Title:</label>
-            <input required type="text" class="post-title" id="post-title" />
+            <input
+              maxlength="33"
+              required
+              type="text"
+              class="post-title"
+              id="post-title"
+            />
             <label for="post-description">Description:</label>
             <textarea
               required
