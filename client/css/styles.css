@@ -6,6 +6,12 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #d0e54d;
+  padding-bottom: 4rem;
+}
+
+/* Scrollbar */
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -26,6 +32,30 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Header */
+header {
+  padding: 1.5rem;
+  margin: 0px 0px 5px 0px;
+  background-color: rgb(60, 33, 87);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+header > * {
+  margin: 0;
+}
+#app-name {
+  font-family: "League Gothic", sans-serif;
+  letter-spacing: 0.1rem;
+  padding: 10px 0px 0px 10px;
+  margin: 0;
+}
+header h1 {
+  margin: 0;
+}
+
 /* Card */
 
 .card {
@@ -132,27 +162,6 @@ ul {
   padding: 0;
 }
 
-/* @media screen and (max-width: 1000px) {
-  .cards--container {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .card--title {
-    font-size: 2rem;
-    margin-top: 3rem;
-  }
-
-  .card--main {
-    font-size: 1.5rem;
-}
-  */
-
 /* Form */
 
 .post {
@@ -230,6 +239,26 @@ ul {
   padding: 0.25rem 1rem;
 }
 
+.card--title {
+  color: white;
+  font-size: 30px;
+  padding-left: 10px;
+}
+
+.description--text {
+  color: white;
+  font-size: 20px;
+}
+
+.emoji {
+  background-color: white;
+  transition: transform 0.2s;
+}
+
+.emoji:hover {
+  transform: scale(1.1);
+}
+
 /* Footer */
 footer {
   background: #3c2157;
@@ -252,37 +281,7 @@ footer ul li {
   margin-left: 1rem;
 }
 
-header {
-  padding: 1.5rem;
-  margin: 0px 0px 5px 0px;
-  background-color: rgb(60, 33, 87);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-}
-header > * {
-  margin: 0;
-}
-#app-name {
-  font-family: "League Gothic", sans-serif;
-  letter-spacing: 0.1rem;
-  padding: 10px 0px 0px 10px;
-  margin: 0;
-}
-header h1 {
-  margin: 0;
-}
-
-/* @media screen and (max-width: 720px) {
-  header {
-    display: flex; */
-
-body {
-  background-color: #d0e54d;
-  padding-bottom: 4rem;
-}
-
+/* Create Post */
 #gif-reset,
 #gif-search,
 #submit-btn {
@@ -290,6 +289,15 @@ body {
   padding: 5px;
   border-radius: 10px;
   border: none;
+}
+
+#gif-search:hover,
+#gif-reset:hover {
+  background-color: rgb(255, 121, 153);
+}
+.gif-image {
+  margin-right: 1rem;
+  margin-bottom: 0.4rem;
 }
 
 input[type="text"],
@@ -300,17 +308,6 @@ textarea {
   padding: 0.3rem;
 }
 
-.card--title {
-  color: white;
-  font-size: 30px;
-  padding-left: 10px;
-}
-
-.description--text {
-  color: white;
-  font-size: 20px;
-}
-
 #submit-btn {
   transition: transform 0.2s;
 }
@@ -318,15 +315,6 @@ textarea {
 #submit-btn:hover {
   background-color: #ff7999;
   transform: scale(1.05);
-}
-
-.emoji {
-  background-color: white;
-  transition: transform 0.2s;
-}
-
-.emoji:hover {
-  transform: scale(1.1);
 }
 
 /* Modal */
@@ -366,15 +354,7 @@ textarea {
   cursor: pointer;
 }
 
-.gif-image {
-  margin-right: 1rem;
-  margin-bottom: 0.4rem;
-}
-
-#gif-search:hover,
-#gif-reset:hover {
-  background-color: rgb(255, 121, 153);
-}
+/* Header */
 
 .slogan {
   font-family: "Kalam", cursive;
@@ -418,8 +398,14 @@ textarea {
   .card--main {
     max-height: 400px;
   }
+  .input--control {
+    justify-content: center;
+  }
 }
 @media screen and (max-width: 750px) {
+  .post {
+    width: 100%;
+  }
   .card {
     width: 80%;
     margin-bottom: 10rem;

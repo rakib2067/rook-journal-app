@@ -19,6 +19,7 @@ open browser on the localhost:3000 or run from terminal `node index.js`
 - html
 - css
 - javascript
+- handlebar
 - browserify
 - jest
 - express
