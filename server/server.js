@@ -12,9 +12,7 @@ app.listen(port, () => {
 });
 
 const gifController = require("./controllers/controller");
-// app.get("/", (req, res) => {
-//   res.send("Hello world");
-// });
+
 app.use("/", gifController);
 
 module.exports = app;
