@@ -6,14 +6,16 @@
   "scripts": {
     "test": "jest --watchAll --env=jsdom",
     "coverage": "jest --coverage --env=jsdom",
-    "dev": "browserify ./js/Main.js > bundle.js"
+    "dev": "browserify ./js/Main.js > bundle.js",
+    "start": "http-server -p 8000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "browserify": "^17.0.0",
-    "node-fetch": "^3.2.2"
+    "node-fetch": "^3.2.2",
+    "http-server": "^13.0.2"
   },
   "devDependencies": {
     "handlebars-jest": "^0.7.0",

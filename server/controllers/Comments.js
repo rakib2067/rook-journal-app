@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const model = require("../models/model");
+const model = require("../models/Post");
 const pjf = path.resolve(__dirname, "../assets/post.json");
 const fs = require("fs");
 

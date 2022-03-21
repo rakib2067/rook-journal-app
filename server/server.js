@@ -9,7 +9,9 @@ app.listen(port, () => {
   console.log(`Rook app listening on port ${port}`);
 });
 
-const gifController = require("./controllers/controller");
-app.use("/", gifController);
+const postRoutes = require("./controllers/Posts");
+app.use("/posts", postRoutes);
+const commentRoutes = require("./controllers/Comments");
+app.use("/comments", commentRoutes);
 
 module.exports = app;
