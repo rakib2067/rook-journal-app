@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
+    "dev": "nodemon --legacy-watch server.js",
     "test": "jest --watchAll --detectOpenHandles",
     "coverage": "jest --coverage"
   },
