@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = 4000;
+require("./db/mongoose");
+// Linking to mongoose file starts the database
 
 app.use(express.json());
 app.use(cors());
@@ -10,6 +12,9 @@ app.listen(port, () => {
 });
 
 const gifController = require("./controllers/controller");
+// app.get("/", (req, res) => {
+//   res.send("Hello world");
+// });
 app.use("/", gifController);
 
 module.exports = app;

@@ -1,54 +1,46 @@
-var fs = require("fs");
-const path = require("path");
+const mongoose = require("mongoose");
+const validator = require("validator");
 
-class Post {
-  constructor(data) {
-    this.id = data.id;
-    this.title = data.title;
-    this.content = data.content;
-    this.giphy = data.giphy;
-    this.emo1 = data.emo1 || 0;
-    this.emo2 = data.emo2 || 0;
-    this.emo3 = data.emo3 || 0;
-    this.comment = [];
-  }
+const Post = mongoose.model("Post", {
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  content: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  giphy: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  emo1: {
+    type: Number,
+    default: 0,
+  },
+  emo2: {
+    type: Number,
+    default: 0,
+  },
+  emo3: {
+    type: Number,
+    default: 0,
+  },
+  // comment: [{ type: Date, default: Date.now }, { type: String }],
+  comment: [
+    new mongoose.Schema({
+      datetime: {
+        type: Date,
+        default: Date.now,
+      },
+      input: {
+        type: String,
+      },
+    }),
+  ],
+});
 
-  static create(userObject) {
-    let count = 0;
-    const pjf = path.resolve(__dirname, "../assets/post.json");
-    let buffer = fs.readFileSync(pjf);
-    try {
-      // Checks for file is empty
-      buffer = JSON.parse(buffer);
-    } catch (e) {
-      // If Empty
-      // Create first entry
-      let title = userObject.title;
-      let content = userObject.content;
-      let giphy = userObject.giphy;
-      let emo1 = userObject.emo1;
-      let emo2 = userObject.emo2;
-      let emo3 = userObject.emo3;
-      const newPost = new Post({
-        id: 1,
-        title,
-        content,
-        giphy,
-        emo1,
-        emo2,
-        emo3,
-      });
-
-      return newPost;
-    }
-    // Create new Posts
-    for (let obj of buffer) {
-      count++;
-    }
-    count++;
-    const newPost = new Post({ id: count, ...userObject });
-    return newPost;
-  }
-}
-
-module.exports = { Post };
+module.exports = Post;

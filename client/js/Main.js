@@ -7,7 +7,7 @@ let description = document.querySelector(".post-description");
 window.onload = initLoad;
 function initLoad() {
   // Initial Load of page
-  fetch("https://futureproof-secrets.herokuapp.com/")
+  fetch("http://localhost:4000/")
     .then((res) => res.json())
     .then((data) => {
       try {
@@ -42,12 +42,8 @@ function returnUserInput(e) {
     title: userTitle,
     content: userDescription,
     giphy: Giphy.selectedGif.src,
-    emo1: 0,
-    emo2: 0,
-    emo3: 0,
-    comment: [],
   };
-  fetch("https://futureproof-secrets.herokuapp.com/create", {
+  fetch("http://localhost:4000/create", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -89,8 +85,8 @@ function emoteHandler(e) {
     id: e.target.parentElement.parentElement.parentElement.id,
     emo: e.target.id,
   };
-  fetch("https://futureproof-secrets.herokuapp.com/emo", {
-    method: "POST",
+  fetch("http://localhost:4000/emo", {
+    method: "PATCH",
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
@@ -111,27 +107,15 @@ function commentHandler(e) {
   e.preventDefault();
   console.log(e);
   let id = e.target.parentElement.parentElement.id;
-  var currentdate = new Date();
-  var datetime =
-    currentdate.getDate() +
-    "/" +
-    (currentdate.getMonth() + 1) +
-    "/" +
-    currentdate.getFullYear() +
-    " - " +
-    currentdate.getHours() +
-    ":" +
-    currentdate.getMinutes() +
-    ":" +
-    currentdate.getSeconds();
 
   let input = e.target[0].value;
   let data = {
     id,
-    comment: { datetime, input },
+    input,
   };
-  fetch("https://futureproof-secrets.herokuapp.com/comment", {
-    method: "POST",
+  console.log(JSON.stringify(data));
+  fetch("http://localhost:4000/comment", {
+    method: "PATCH",
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
