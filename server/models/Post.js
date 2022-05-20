@@ -56,7 +56,7 @@ class Post {
     return new Promise(async (resolve, reject) => {
       try {
         let updatedPostData = await db.query(
-          `UPDATE post SET $1 = $1+1 WHERE postID=$2 RETURNING *;`,
+          `UPDATE post SET $1 = q$1+1 WHERE postID=$2 RETURNING *;`,
           [emo, this.id]
         );
         let updatedPost = new Post(updatedPostData.rows)[0];
